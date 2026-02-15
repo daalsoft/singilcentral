@@ -15,7 +15,7 @@ export default function Home() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>신길동 아파트 실거래가</h1>
+      <h1>신길뉴타운 아파트 실거래가</h1>
 
       <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
         <MonthSelector value={month} onChange={setMonth} />
