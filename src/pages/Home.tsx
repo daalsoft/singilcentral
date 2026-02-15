@@ -5,7 +5,12 @@ import MonthSelector from "../components/MonthSelector";
 import TradeTable from "../components/TradeTable";
 
 export default function Home() {
-  const [month, setMonth] = useState("202601"); // 초기 월
+  const now = new Date();
+  const currentMonth = `${now.getFullYear()}${(now.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}`; // 월은 0~11이므로 +1, 2자리로 맞춤
+
+  const [month, setMonth] = useState(currentMonth);    
   const { data, loading, error, loadTrade } = useTrade();
 
   return (
