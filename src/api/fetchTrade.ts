@@ -4,7 +4,8 @@ import type { Trade } from "../types/trade";
 export async function fetchTrade(
   month: string,
   lawdCd: string,
-  page = 1 // 페이지 번호 기본값 1
+  page = 1, // 페이지 번호 기본값 1
+  numOfRows=1000
 ): Promise<{ items: Trade[]; totalCount: number; numOfRows: number }> {
 
   const key = import.meta.env.VITE_MOLIT_API_KEY;
@@ -18,6 +19,7 @@ export async function fetchTrade(
     DEAL_YMD: month,
     _type: "json",
     pageNo: String(page),
+    numOfRows: String(numOfRows)
   });
 
   const res = await fetch(`${url}?${params.toString()}`);
