@@ -49,7 +49,7 @@ export default function TradeTable({ data, searchMonth}: Props) {
   return (
      <>
     <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
-      [ 거래 : {formatSearchMonth(searchMonth)} ]
+      [ 거래월 : {formatSearchMonth(searchMonth)} ]
     </div>    
     <table style={{ borderCollapse: "collapse", width: "100%" }}>
       <thead>
