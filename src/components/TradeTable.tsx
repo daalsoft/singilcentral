@@ -2,6 +2,7 @@ import type { Trade } from "../types/trade";
 
 interface Props {
   data: Trade[];
+  searchMonth: string; // 예: "2024.01"
 }
 
 // 🔥 화면 표시용 이름 변환 함수
@@ -15,7 +16,16 @@ const getDisplayAptNm = (aptNm: string) => {
   return aptNm.replace(/아파트$/, "");
 };
 
-export default function TradeTable({ data }: Props) {
+const formatSearchMonth = (yyyymm: string) => {
+  if (!yyyymm || yyyymm.length !== 6) return yyyymm;
+
+  const year = yyyymm.slice(0, 4);
+  const month = yyyymm.slice(4, 6);
+
+  return `${year}.${month}`;
+};
+
+export default function TradeTable({ data, searchMonth}: Props) {
   const sortedData = [...data].sort((a, b) => {
     const dateA =
       (a.dealYear || 0) * 10000 +
@@ -37,6 +47,10 @@ export default function TradeTable({ data }: Props) {
   });
 
   return (
+     <>
+    <div style={{ marginBottom: "10px", fontWeight: "bold" }}>
+      [ 거래 : {formatSearchMonth(searchMonth)} ]
+    </div>    
     <table style={{ borderCollapse: "collapse", width: "100%" }}>
       <thead>
         <tr style={{ backgroundColor: "#c7c4c4", color: "black" }}>
@@ -86,5 +100,6 @@ export default function TradeTable({ data }: Props) {
         ))}
       </tbody>
     </table>
+    </>
   );
 }
