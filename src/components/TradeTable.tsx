@@ -6,10 +6,13 @@ interface Props {
 
 // 🔥 화면 표시용 이름 변환 함수
 const getDisplayAptNm = (aptNm: string) => {
+  if (!aptNm) return "";
   if (aptNm === "래미안영등포프레비뉴") {
     return "래미안프레비뉴";
   }
-  return aptNm;
+
+  // 문자열 끝에 "아파트"가 있으면 제거
+  return aptNm.replace(/아파트$/, "");
 };
 
 export default function TradeTable({ data }: Props) {
