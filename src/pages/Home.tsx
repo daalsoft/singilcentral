@@ -19,7 +19,21 @@ export default function Home() {
 
       <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
         <MonthSelector value={searchMonth} onChange={setMonth} />
-        <button onClick={() => loadTrade(searchMonth, "11560")}>조회</button>
+        <button
+          style={{
+            height: "40px",
+            padding: "0 18px",
+            fontSize: "15px",
+            borderRadius: "6px",
+            border: "none",
+            backgroundColor: "#2c3e50",
+            color: "white",
+            cursor: "pointer",
+          }}
+          onClick={() => loadTrade(searchMonth, "11560")}
+        >
+          조회
+        </button>
       </div>
 
       {loading && <p>로딩중...</p>}

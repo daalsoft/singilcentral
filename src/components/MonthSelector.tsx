@@ -10,23 +10,32 @@ export default function MonthSelector({ value, onChange }: Props) {
 
   useEffect(() => {
     if (value && value.length === 6) {
-      // YYYYMM → YYYY-MM 로 변환
       setInput(`${value.slice(0, 4)}-${value.slice(4, 6)}`);
     }
   }, [value]);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const v = e.target.value; // YYYY-MM 형식
+    const v = e.target.value;
     setInput(v);
-
-    // YYYY-MM → YYYYMM 변환
     const formatted = v.replace("-", "");
     onChange(formatted);
   }
 
   return (
-    <div style={{ margin: "20px" }}>
-      <label style={{ marginRight: "10px", fontWeight: "bold" }}>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        margin: "10px 0",
+      }}
+    >
+      <label
+        style={{
+          fontWeight: "bold",
+          fontSize: "16px",
+        }}
+      >
         거래월
       </label>
 
@@ -35,12 +44,14 @@ export default function MonthSelector({ value, onChange }: Props) {
         value={input}
         onChange={handleChange}
         style={{
-          padding: "8px",
-          fontSize: "16px",
-          borderRadius: "4px",
+          height: "40px",
+          padding: "0 10px",
+          fontSize: "15px",
+          borderRadius: "6px",
           border: "1px solid #ccc",
         }}
       />
     </div>
   );
 }
+
