@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface Props {
-  value: string; // "202602"
+  value: string; // YYYYMM
   onChange: (month: string) => void;
 }
 
@@ -10,35 +10,19 @@ export default function MonthSelector({ value, onChange }: Props) {
 
   useEffect(() => {
     if (value && value.length === 6) {
-      setInput(`${value.slice(0, 4)}-${value.slice(4, 6)}`);
+      setInput(`${value.slice(0, 4)}-${value.slice(4, 6)}`); // YYYY-MM
     }
   }, [value]);
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const v = e.target.value;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const v = e.target.value;        // YYYY-MM
     setInput(v);
-    const formatted = v.replace("-", "");
-    onChange(formatted);
-  }
+    onChange(v.replace("-", ""));     // 부모로 YYYYMM 전달
+  };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "12px",
-        margin: "10px 0",
-      }}
-    >
-      <label
-        style={{
-          fontWeight: "bold",
-          fontSize: "16px",
-        }}
-      >
-        거래월
-      </label>
-
+    <div style={{ display: "flex", alignItems: "center", gap: "12px", margin: "10px 0" }}>
+      <label style={{ fontWeight: "bold", fontSize: "16px" }}>거래월</label>
       <input
         type="month"
         value={input}
@@ -54,4 +38,3 @@ export default function MonthSelector({ value, onChange }: Props) {
     </div>
   );
 }
-
